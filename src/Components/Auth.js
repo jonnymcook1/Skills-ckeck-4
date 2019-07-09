@@ -46,7 +46,7 @@ class Auth extends Component {
                 <div className='authBox'>
                     <div className='logo'>
                         <img/>
-                        <h2>Helo</h2>
+                        <h2 id='logoName'>Helo</h2>
                     </div>
                     <div className='authInput'>
                         Username:
