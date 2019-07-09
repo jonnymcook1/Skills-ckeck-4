@@ -1,20 +1,19 @@
 import React from 'react';
 import './App.css';
-import Auth from './Components/Auth';
-import Dashboard from './Components/Dashboard';
-import Form from './Components/Form';
+import {HashRouter as Router} from 'react-router-dom'
+import routes from './routes'
 import Nav from './Components/Nav';
-import Post from './Components/Post';
+
+
 
 function App() {
   return (
-    <div className="App">
-    <Auth/>
-    <Dashboard/>
-    <Form/>
-    <Nav/>
-    <Post/>
-    </div>
+    <Router>
+      <div className="App">
+        <Nav/>
+        {routes}
+      </div>
+    </Router>
   );
 }
 
