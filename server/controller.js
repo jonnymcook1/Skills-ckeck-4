@@ -14,7 +14,7 @@ module.exports = {
                 .then((newPassword) => {
                     db.addUser(username, newPassword, profile_pic)
                     .then(() => {
-                        res.status(200).json(username)
+                        res.status(200).json(username, profile_pic)
                     })
                 })
             }
@@ -36,12 +36,15 @@ module.exports = {
                         res.status(403).json({error: 'Username or Password is Incorrect'})
                     } else {
                         req.session.user = {
-                            username: user[0].username
+                            user: user[0].user,
+                            username: user[0].username,
+                            profile_pic: user[0].profile_pic
                         }
                     };
                     res.status(200).json(req.session.user)
                 })
             }
         })
-    }
+    },
+
 }

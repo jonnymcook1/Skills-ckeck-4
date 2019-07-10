@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import axios from 'axios';
 import {Redirect} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {updateUser} from '../redux/reducer'
 
 class Auth extends Component {
     constructor() {
@@ -20,7 +22,12 @@ class Auth extends Component {
         e.preventDefault()
         axios
         .post('/api/auth/register', {username: this.state.username, password: this.state.password})
-        .then(() => this.setState({redirect: true}))
+        .then((user) => {this.props.updateUser(user.data) 
+            this.setState({
+                username:'',
+                password: '',
+                redirect: true})
+        })
         .catch(() => {alert('Registration Unsuccessful')})
     }
 
@@ -28,13 +35,18 @@ class Auth extends Component {
         e.preventDefault()
         axios
         .post('/api/auth/login', {username: this.state.username, password: this.state.password})
-        .then(() => this.setState({redirect: true}))
+        .then((user) => {this.props.updateUser(user.data) 
+            this.setState({
+                username: '',
+                password: '',
+                redirect: true})
+        })
         .catch(() => {alert('Login Unsuccessful')})
     }
 
 
     render() {
-
+        console.log(this.props)
         if(this.state.redirect){
             return <Redirect to='/dashboard' />
         }
@@ -64,4 +76,10 @@ class Auth extends Component {
     }
 }
 
-export default Auth
+const mapStateToProps = state => {
+    const {username, profilePic} = state
+    return {username, profilePic}
+
+}
+
+export default connect(mapStateToProps, {updateUser})(Auth)

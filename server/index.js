@@ -30,6 +30,7 @@ app.use(
 app.post('/api/auth/register', registerUser)
 app.post('/api/auth/login', loginUser)
 
+
 app.listen(SERVER_PORT, () => {
     console.log(`Server listening on port ${SERVER_PORT}`)
 })
