@@ -2,7 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const massive = require('massive')
 const session = require('express-session')
-const {registerUser, loginUser} = require('./controller')
+const {registerUser, loginUser, post, getPost} = require('./controller')
 
 const app = express()
 
@@ -29,6 +29,8 @@ app.use(
 
 app.post('/api/auth/register', registerUser)
 app.post('/api/auth/login', loginUser)
+app.post('/api/post/:id', post)
+app.get('/api/posts/', getPost)
 
 
 app.listen(SERVER_PORT, () => {

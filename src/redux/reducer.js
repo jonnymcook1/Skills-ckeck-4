@@ -9,10 +9,10 @@ const initialState = {
 
 export const UPDATE_USER="UPDATE_USER";
 
-export const updateUser = (user, username, profilePic) => {
+export const updateUser = (id, username, profilePic) => {
     return {
         type: UPDATE_USER,
-        payload: user, username, profilePic
+        payload: id, username, profilePic
     }
 }
 
@@ -22,7 +22,7 @@ export default function reducer(state=initialState, action) {
         case UPDATE_USER:
             return {
                 ...state,
-                user: payload,
+                id: payload,
                 username: payload,
                 profilePic: payload
 
